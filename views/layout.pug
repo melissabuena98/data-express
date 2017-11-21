@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        link(href="styles/style.css" rel="stylesheet")
+        block vars
+        title #{title}
+    body
+        header
+            nav
+                a(href='/') HOME
+                a(href='/login' class='nav-right') LOGIN/REGISTER
+                
+        block content
+        footer
