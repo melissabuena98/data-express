@@ -2,13 +2,17 @@ doctype html
 html
     head
         link(href="styles/style.css" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet")
         block vars
         title #{title}
     body
         header
             nav
+                a(href='/' id='nav-img')
+                    img(src="/images/nclogo.png")            
                 a(href='/') HOME
-                a(href='/login' class='nav-right') LOGIN/REGISTER
+                a(href='/register' class='nav-right') REGISTER
+                a(href='/login' class='nav-right' id='log-float') LOGIN
                 
         block content
         footer

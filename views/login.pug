@@ -1,4 +1,11 @@
 extends layout
 
 block content
-    h1 Register / Login Form
+    h1 LOGIN
+    div(id='login', class='user-form')
+        span
+            form(id='form', method='post', action='/login')
+                input(type='text', name='username', placeholder='Username')
+                input(type='password', name='password', placeholder='Password')
+                input(type='submit', value='Log In', class='form-button', id='login-button')
+                

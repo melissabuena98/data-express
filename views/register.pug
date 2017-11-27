@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1 REGISTER
+    div(id='register', class='user-form')
+        span
+            form(id='form', method='post', action='/register')
+                input(type='text', name='username', placeholder='Username')
+                input(type='password', name='password', placeholder='Password')
+                input(type='text', name='email', placeholder='Email')
+                input(type='text', name='age', placeholder='Age')
+                h3 #1 Which degree are you interested in?
+                input(type='submit', value='Register', class='form-button', id='register-button')

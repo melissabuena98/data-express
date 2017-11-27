@@ -13,5 +13,6 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 app.get('/', route.index);
 app.get('/login', route.login);
+app.get('/register', route.register);
 
 app.listen(3000);
