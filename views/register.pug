@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 REGISTER
+    h1(id="regTitle") REGISTER AS A NEW STUDENT
     div(id='register', class='user-form')
         span
             form(id='form', method='post', action='/register')
@@ -9,5 +9,29 @@ block content
                 input(type='password', name='password', placeholder='Password')
                 input(type='text', name='email', placeholder='Email')
                 input(type='text', name='age', placeholder='Age')
-                h3 #1 Which degree are you interested in?
+                .question-group
+                    h3(class="q") #1 Which degree are you most interested in?
+                    select(name='degree')
+                        option(value='bscs') BSCS
+                        option(value='bsgd') BSGD
+                        option(value='bswd') BSWD
+                        option(value='bsis') BSIS
+                        option(value='bstm') BSTM
+                .question-group
+                    h3(class="q") #2 Which region of the U.S. are you from?
+                    select(name='degree')
+                        option(value='east') Eastern U.S.
+                        option(value='west') Western U.S.
+                        option(value='north') Northern U.S.
+                        option(value='south') Southern U.S.
+                        option(value='outside') Outside U.S.
+                .question-group
+                    h3(class="q") #3 What is your expected graduation year?
+                    select(name='degree')
+                        option(value='east') 2017
+                        option(value='west') 2018
+                        option(value='north') 2019
+                        option(value='south') 2020 or greater
+                        option(value='outside') Already graduated
+                
                 input(type='submit', value='Register', class='form-button', id='register-button')
