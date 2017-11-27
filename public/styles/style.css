@@ -9,6 +9,21 @@ body{
 h1{
     text-align:center;
     color:#FFCC00;
+    font-size:50px;
+}
+
+h1#regTitle{
+font-size:30px;
+margin-bottom:0;
+}
+
+.loginbody{
+    height:100vh;
+    width:100%;
+    position:fixed;
+    top:0;
+    z-index:-5;
+    background-image:url("/images/loginbg.png");
 }
 /* NAV BAR STYLE */
 nav {
@@ -62,6 +77,8 @@ nav img {
     height: 50px;  
 }
 
+
+
 /* FORM */
 
 
@@ -96,4 +113,30 @@ nav img {
 }
 #login-button:hover, #register-button:hover{
     background-color: #FFCC00
+}
+
+.question-group{
+display:block;
+}
+
+h3.q{
+  display:inline-block;
+  text-align:left;
+  width: 400px; 
+  color:#ffcc00;
+}
+
+select{
+    width:140px;
+    height:35px;
+    font-size:13px;
+}
+
+#login{
+    background:rgba(51, 51, 51, 0.774);
+    width:30%;
+    padding:20px;
+    border-radius:20px;
+    float:none;
+    margin:auto;
 }
