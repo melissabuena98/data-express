@@ -26,7 +26,12 @@ exports.index = function (req, res) {
 };
 
 exports.home = function (req, res){
-    res.render('home');
+    User.findById(req.session.user.userID, function (err, user) {
+        if (err) return console.error(err);
+        res.render('home',{
+            user: user
+        });
+    });
 };
 
 exports.login = function (req, res) {
@@ -36,7 +41,7 @@ exports.login = function (req, res) {
 exports.loginUser = function(req, res){
     User.findOne({'username': req.body.username}, function(err, user){
         if(err){
-            console.log(err);
+            console.log(err);            
         }
         else{
             var pw = req.body.password;
@@ -71,6 +76,7 @@ exports.registerUser = function (req, res){
     user.save(function (err, user){
         if(err) return console.error(err);
         console.log(req.body.username + ' was added!');
+        console.log("TYPE:" + req.body.accType);
     });
     res.redirect('/login');
 };
@@ -98,3 +104,33 @@ exports.editUser = function (req, res){
     });
     res.redirect('/home');
 };
+
+exports.manage = function (req, res){
+    console.log(req.session.user.username);
+    User.find(function (err, user){
+    if (err) return console.error(err);
+    res.render('manage', {
+        user: user
+        });
+    });
+
+};
+
+exports.delete = function (req, res){
+    User.findByIdAndRemove(req.params.id, function (err, user){
+    if (err) return console.error(err);
+    res.redirect('/home');
+    });
+}
+
+exports.logout = function (req, res){
+    req.session.destroy(function(err){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("LOGGED OUT!");
+            res.redirect('/');
+        }
+    });
+}

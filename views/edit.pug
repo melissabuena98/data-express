@@ -5,9 +5,9 @@ block content
     div(id='register', class='user-form')
         span
             form(id='form', method='post', action='/edit/' + user.id)
-                input(type='text', name='username' value=user.username)
-                input(type='text', name='email' value=user.email)
-                input(type='text', name='age' value=user.age)
+                input(type='text', name='username' value=user.username required)
+                input(type='text', name='email' value=user.email required)
+                input(type='text', name='age' value=user.age required)
                 .question-group
                     h3(class="q") #1 Which degree are you most interested in?
                     select(name='degree')
