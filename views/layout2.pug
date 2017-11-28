@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        link(href="styles/style.css" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet")
+        block vars
+        title #{title}
+    body
+        header
+            nav
+                a(href='/home' id='nav-img')
+                    img(src="/images/nclogo.png")            
+                a(href='/home') HOME
+                a(href='/edit') EDIT PROFILE
+                a(href='/manage') MANAGE USERS
+                a(href='/logout' class='nav-right' id='log-float') LOGOUT
+                
+        block content
+        footer

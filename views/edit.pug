@@ -1,17 +1,17 @@
-extends layout
+extends layout2
 
 block content
-    h1(id="regTitle") REGISTER AS A NEW STUDENT
+    h1(id="regTitle") EDIT YOUR PROFILE
     div(id='register', class='user-form')
         span
-            form(id='form', method='post', action='/register')
-                input(type='text', name='username', placeholder='Username')
-                input(type='password', name='password', placeholder='Password')
-                input(type='text', name='email', placeholder='Email')
-                input(type='text', name='age', placeholder='Age')
+            form(id='form', method='post', action='/edit/' + user.id)
+                input(type='text', name='username' value=user.username)
+                input(type='text', name='email' value=user.email)
+                input(type='text', name='age' value=user.age)
                 .question-group
                     h3(class="q") #1 Which degree are you most interested in?
                     select(name='degree')
+                        option(selected = user.answers[0]) #{user.answers[0]}
                         option(value='BSCS') BSCS
                         option(value='BSGD') BSGD
                         option(value='BSWD') BSWD
@@ -20,6 +20,7 @@ block content
                 .question-group
                     h3(class="q") #2 Which region of the U.S. are you from?
                     select(name='region')
+                        option(selected = user.answers[1]) #{user.answers[1]}
                         option(value='Eastern U.S.') Eastern U.S.
                         option(value='Western U.S.') Western U.S.
                         option(value='Northern U.S.') Northern U.S.
@@ -28,14 +29,10 @@ block content
                 .question-group
                     h3(class="q") #3 What is your expected graduation year?
                     select(name='gradYear')
+                        option(selected = user.answers[2]) #{user.answers[2]}
                         option(value='2017') 2017
                         option(value='2018') 2018
                         option(value='2019') 2019
                         option(value='2020 or greater') 2020 or greater
                         option(value='Already graduated') Already graduated
-                .question-group
-                    h5(class='acc') Create account as:
-                    select(name='accType' class="selacc")
-                        option(value='admin') Admin
-                        option(value='student') Student
-                input(type='submit', value='Register', class='form-button', id='register-button')
+                input(type='submit', value='Save Information', class='form-button', id='register-button')
