@@ -21,6 +21,13 @@ var userSchema = mongoose.Schema({
 
 var User = mongoose.model('User_Collection', userSchema);
 
+exports.collection = function(){
+    // var users = User.find();
+    // return users;
+    console.log("nothing");
+};
+  
+
 exports.index = function (req, res) {
       res.render('index');
 };
