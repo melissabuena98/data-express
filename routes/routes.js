@@ -22,7 +22,11 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('User_Collection', userSchema);
 
 exports.index = function (req, res) {
-      res.render('index');
+    User.find(function (err, user){
+        res.render('index', {
+            userList: user
+        });
+    });  
 };
 
 exports.home = function (req, res){

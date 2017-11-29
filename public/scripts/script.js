@@ -1,4 +1,8 @@
 window.onload = function(){
+    //var route = require('./routes/routes.js');
+    console.log("HELLO");
+    console.log(ListOfUsers);
+    console.log(ListOfUsers[0].username);
     drawChart("chart0", "Which degree are you interested in?", {
         "BSCS":1,
         "BSGD":1,

@@ -12,4 +12,6 @@ block content
         div(class='col-4')
             canvas(id='chart2' width='500' height='300')
             legend(for='chart2')
-    script(src='styles/script.js')
+    script(type="text/javascript").
+        var ListOfUsers = !{JSON.stringify(userList)};
+    script(src='scripts/script.js')
