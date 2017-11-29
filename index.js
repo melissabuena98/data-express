@@ -25,6 +25,15 @@ var checkAuth = function(req, res, next){
     }
 }
 
+var checkAuth2 = function(req, res, next){
+    if(req.session.user && req.session.user.isAuthenticated && req.session.user.userType == 'admin'){
+        next();
+    }
+    else{
+        res.redirect('/login');
+    }
+}
+
 app.use(expressSession ({
     secret: 'ThisIsTheSecret',
     saveUninitialized: true,
@@ -32,10 +41,14 @@ app.use(expressSession ({
 }));
 
 app.get('/', route.index);
-app.get('/home', route.home);
+app.get('/home', checkAuth, route.home);
 app.get('/login', route.login);
 app.get('/register', route.register);
 app.get('/edit', checkAuth, route.edit);
+app.get('/manage', checkAuth2, route.manage);
+
+app.get('/delete/:id', checkAuth2, route.delete)
+app.get('/logout', route.logout);
 
 app.post('/register', urlencodedParser, route.registerUser);
 app.post('/login', urlencodedParser, route.loginUser);

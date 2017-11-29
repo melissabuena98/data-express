@@ -1,4 +1,22 @@
 extends layout2
 
 block content
-    h1 Manager
+    h1 USER MANAGER
+    div(class='tableBody')
+        table(class='gridtable')
+            tr
+                th Type
+                th User ID
+                th Username
+                th Email
+                th Age
+                th 
+            each u in user
+                tr
+                    td #{u.type}
+                    td #{u._id}
+                    td #{u.username}
+                    td #{u.email}
+                    td #{u.age}
+                    td
+                        a(href='/delete/' + u._id) Delete

@@ -166,3 +166,36 @@ select.selacc{
     float:none;
     margin:auto;
 }
+
+/* MANAGER */
+
+.tableBody{
+    width:100%;
+    text-align:center;
+}
+
+table.gridtable {
+    text-align:center;
+    margin:auto;
+    width:60%;
+    color: #333;
+    border-width: 3px;
+    border-color: #333;
+    border-collapse: collapse;
+}
+
+table.gridtable th {
+    border-width: 2px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #333;
+    background-color: #ffcc00;
+  }
+  
+  table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #333;
+    background-color: #f2f2f2;
+  }
