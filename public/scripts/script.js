@@ -10,20 +10,21 @@ window.onload = function(){
         "BSIS":1,
         "BSTM":1,
     }, ["#ffff00","#ff0000", "#00ff00","#00ffff", "#aa1aab"]);
-    drawChart("chart1", "Which region of the United States do you come from?", {
-        "Eastern U.S.":10,
-        "Western U.S.":30,
-        "Northern U.S.":50,
-        "Southern U.S.":200,
-        "Country outside of the U.S.":90,
-    }, ["#ffff00","#ff0000", "#00ff00","#00ffff", "#aa1aab"]);
-    drawChart("chart2", "What is your expected graduation year?", {
-        "2018":10,
-        "2019":30,
-        "2020":50,
-        "2021":70,
-        "Already graduated":90,
-    }, ["#ffff00","#ff0000", "#00ff00","#00ffff", "#aa1aab"]);
+    // drawChart("chart1", "Question", )
+    // drawChart("chart1", "Which region of the U.S. do you come from?", {
+    //     "Eastern U.S.":10,
+    //     "Western U.S.":30,
+    //     "Northern U.S.":50,
+    //     "Southern U.S.":200,
+    //     "Country outside of the U.S.":90,
+    // }, ["#ffff00","#ff0000", "#00ff00","#00ffff", "#aa1aab"]);
+    // drawChart("chart2", "What is your expected graduation year?", {
+    //     "2018":10,
+    //     "2019":30,
+    //     "2020":50,
+    //     "2021":70,
+    //     "Already graduated":90,
+    // }, ["#ffff00","#ff0000", "#00ff00","#00ffff", "#aa1aab"]);
 
     function drawChart(chart, name, scores, colors){
         var canvas = document.getElementById(chart);
@@ -33,7 +34,6 @@ window.onload = function(){
         var curX = 50;
         var barIndex = 0;
         var minusHeight = 30;
-        var ans1, ans2, ans3, ans4, ans5;
         var tallies = [];
         var userCount = 0;
         var multiplier = 0;
@@ -73,6 +73,7 @@ window.onload = function(){
         ctx.textBaseline="bottom";
         ctx.textAlign="left";
         ctx.fillStyle = "#000000";
+        ctx.fillStyle
         ctx.font = "bold 24px Nunito";
         ctx.fillText(name, 50, canvas.height);
         ctx.restore();
