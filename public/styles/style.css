@@ -1,7 +1,7 @@
 /* GLOBAL */
-*{
+/* *{
     box-sizing: border-box;
-}
+} */
 body{
     margin:0;
     padding:0;
@@ -15,9 +15,9 @@ canvas{
 .col-4 {
     width: 33.33%;
 }
-div{
+/* div{
     float: left;
-}
+} */
 h1{
     text-align:center;
     color:#FFCC00;

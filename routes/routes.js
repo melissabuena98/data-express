@@ -41,18 +41,29 @@ exports.login = function (req, res) {
 exports.loginUser = function(req, res){
     User.findOne({'username': req.body.username}, function(err, user){
         if(err){
-            console.log(err);            
+            console.log(err);
+            
         }
         else{
-            var pw = req.body.password;
-            if(bcrypt.compareSync(pw, user.password)){
-                req.session.user={
-                    userID: user._id,
-                    isAuthenticated: true,
-                    userType: user.type,
-                    username: user.username
-                };
-                res.redirect('/home');
+            if(!user){
+                console.log("User does not exist. Please register!");
+                res.redirect('/register');
+            }
+            else if(req.body.password != null){
+                var pw = req.body.password;
+                if(bcrypt.compareSync(pw, user.password)){
+                    req.session.user={
+                        userID: user._id,
+                        isAuthenticated: true,
+                        userType: user.type,
+                        username: user.username
+                    };
+                    res.redirect('/home');
+                }
+                else{
+                    console.log("Incorrect Password for this account!");
+                    res.redirect('/login');
+                    }
             }
         }
     });
@@ -110,7 +121,8 @@ exports.manage = function (req, res){
     User.find(function (err, user){
     if (err) return console.error(err);
     res.render('manage', {
-        user: user
+        userList: user,
+        user: req.session.user
         });
     });
 

@@ -10,13 +10,19 @@ block content
                 th Username
                 th Email
                 th Age
-                th 
-            each u in user
+                th Degree
+                th Region
+                th Grad Year
+                th
+            each u in userList
                 tr
                     td #{u.type}
                     td #{u._id}
                     td #{u.username}
                     td #{u.email}
                     td #{u.age}
+                    td #{u.answers[0]}
+                    td #{u.answers[1]}
+                    td #{u.answers[2]}
                     td
                         a(href='/delete/' + u._id) Delete
