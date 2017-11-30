@@ -1,7 +1,4 @@
 /* GLOBAL */
-/* *{
-    box-sizing: border-box;
-} */
 body{
     margin:0;
     padding:0;
@@ -10,9 +7,9 @@ body{
     background-image:url("/images/loginbg.png"); 
     height:100vh;
 }
-
-
-
+.cookie{
+    margin-left:1%;
+}
 h1{
     text-align:center;
     color:#FFCC00;
@@ -20,8 +17,8 @@ h1{
 }
 
 h1#regTitle{
-font-size:30px;
-margin-bottom:0;
+font-size:40px;
+margin-bottom:10px;
 }
 
 .loginbody{
@@ -89,13 +86,14 @@ nav img {
 /* FORM */
 
 #register{
-    background-color:rgba(51, 51, 51, 0.842);
-    border-radius:15px;
+    background-color:rgba(51, 51, 51, 0.808);
     padding: 20px 0;
+    width:70%;
+    margin:auto;
+    border-radius:25px;
 }
 .user-form{
     width: 100%;
-    float: left;
     text-align: center;
     position: relative;
     margin: 20px 0;
@@ -171,6 +169,7 @@ select.selacc{
 .tableBody{
     width:100%;
     text-align:center;
+    margin-bottom:75px;
 }
 
 table.gridtable {
@@ -199,11 +198,12 @@ table.gridtable th {
     background-color: #f2f2f2;
   }
   .chartBody{
-      width: 100%;
-      display: inline-block;
-      background-color:rgba(51, 51, 51, 0.842);
-      border-radius:15px;
+      width: 98%;
+      height:60%;
+      background-color:rgba(51, 51, 51, 0.712);
       padding:0 0 50px 0px;
+      margin:auto;
+      border-radius:25px;
       
   }
   .col-4 {

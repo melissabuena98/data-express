@@ -22,19 +22,50 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('User_Collection', userSchema);
 
 exports.index = function (req, res) {
-    User.find(function (err, user){
-        res.render('index', {
-            userList: user
-        });
-    });  
-};
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(); 
+    var dateTime = date+' '+time;
+    if(req.cookies.visitedBefore == null){
+        res.cookie('visitedBefore', dateTime);
+        User.find(function (err, user){
+            res.render('index', {
+                userList: user,
+                user: req.session.user,
+                visitCookie: "You visited this page for the first time!"
+            });
+        }); 
+    }
+    else{
+        User.find(function (err, user){
+            res.render('index', {
+                userList: user,
+                user: req.session.user,
+                visitCookie: "You visited this page last on " + req.cookies.visitedBefore
+            });
+        }); 
+        
+        res.cookie('visitedBefore', dateTime);
+    }
+    
+    User.findOne({'type': 'admin'}, function(err, user){
+        if(user == null){
+            var hashedPW = bcrypt.hashSync("pass");            
+            var user = new User({
+                username: "admin",
+                password:hashedPW,
+                email: "admin@email.com",
+                age: "1",
+                answers: ["BSWD", "Western U.S.", "2017"],
+                type: "admin"
+            });
 
-exports.home = function (req, res){
-    User.findById(req.session.user.userID, function (err, user) {
-        if (err) return console.error(err);
-        res.render('home',{
-            user: user
-        });
+            user.save(function (err, user){
+                if(err) return console.error(err);
+                console.log(req.body.username + ' was added!');
+                console.log("TYPE:" + req.body.accType);
+            });
+        }
     });
 };
 
@@ -62,7 +93,7 @@ exports.loginUser = function(req, res){
                         userType: user.type,
                         username: user.username
                     };
-                    res.redirect('/home');
+                    res.redirect('/');
                 }
                 else{
                     console.log("Incorrect Password for this account!");
@@ -85,7 +116,7 @@ exports.registerUser = function (req, res){
         email: req.body.email,
         age: req.body.age,
         answers: [req.body.degree, req.body.region, req.body.gradYear],
-        type: req.body.accType
+        type: "student"
     });
 
     user.save(function (err, user){
@@ -100,7 +131,8 @@ exports.edit = function (req, res){
     User.findById(req.session.user.userID, function (err, user) {
         if (err) return console.error(err);
         res.render('edit',{
-            user: user
+            user: req.session.user,
+            theuser: user
         });
     });
 };
@@ -112,12 +144,16 @@ exports.editUser = function (req, res){
         user.email = req.body.email;
         user.age = req.body.age;
         user.answers = [req.body.degree, req.body.region, req.body.gradYear]
+        if(req.body.password != ""){
+            var hashedPW = bcrypt.hashSync(req.body.password);
+            user.password = hashedPW
+        }
         user.save(function (err, user){
             if(err) return console.error(err);
             console.log(req.body.username + " info updated!");
         });
     });
-    res.redirect('/home');
+    res.redirect('/');
 };
 
 exports.manage = function (req, res){
@@ -133,10 +169,18 @@ exports.manage = function (req, res){
 };
 
 exports.delete = function (req, res){
-    User.findByIdAndRemove(req.params.id, function (err, user){
-    if (err) return console.error(err);
-    res.redirect('/home');
-    });
+    console.log("SESSION ID"+req.session.user.userID);
+    console.log("PARAMS" + req.params.id);
+    if(req.session.user.userID == req.params.id){
+        console.log("CANT DELETE URSELF FOOL");
+        res.redirect('/manage');
+    }
+    else{
+        User.findByIdAndRemove(req.params.id, function (err, user){
+        if (err) return console.error(err);
+        res.redirect('/manage');
+        });
+    }
 }
 
 exports.logout = function (req, res){

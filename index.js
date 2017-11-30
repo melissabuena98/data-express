@@ -5,11 +5,13 @@ var path = require('path');
 var expressSession = require('express-session');
 var route = require('./routes/routes.js');
 var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
 
 var app = express();
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
+app.use(cookieParser("This is my cookie"));
 app.use(express.static(path.join(__dirname + '/public')));
 
 var urlencodedParser = bodyParser.urlencoded({
@@ -40,8 +42,8 @@ app.use(expressSession ({
     resave: true
 }));
 
+
 app.get('/', route.index);
-app.get('/home', checkAuth, route.home);
 app.get('/login', route.login);
 app.get('/register', route.register);
 app.get('/edit', checkAuth, route.edit);

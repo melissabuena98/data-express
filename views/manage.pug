@@ -1,4 +1,4 @@
-extends layout2
+extends layout
 
 block content
     h1 USER MANAGER
@@ -25,4 +25,6 @@ block content
                     td #{u.answers[1]}
                     td #{u.answers[2]}
                     td
+                        -if(u.username != user.username){
                         a(href='/delete/' + u._id) Delete
+                        -}

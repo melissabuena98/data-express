@@ -11,8 +11,17 @@ html
                 a(href='/' id='nav-img')
                     img(src="/images/nclogo.png")            
                 a(href='/') HOME
+                -if(user == null){
                 a(href='/register' class='nav-right') REGISTER
                 a(href='/login' class='nav-right' id='log-float') LOGIN
+                -}else{
+                a(href='/edit') EDIT PROFILE
+                -if(user.userType == 'admin'){
+                a(href='/manage') MANAGE USERS
+                -}
+                a(href='/logout' class='nav-right' id='log-float') LOGOUT
+                a(href='/edit' class='nav-right' id='log-float') Hi, #{user.username}!
+                -}
                 
         block content
         footer

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Home
+    h1 Neumont Prospective Students Statistics
     div(class='chartBody')
         div(class='col-4')
             canvas(id='chart0' width='500' height='200')
@@ -15,3 +15,4 @@ block content
     script(type="text/javascript").
         var ListOfUsers = !{JSON.stringify(userList)};
     script(src='scripts/script.js')
+    p(class='cookie') #{visitCookie}
