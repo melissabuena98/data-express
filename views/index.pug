@@ -2,15 +2,15 @@ extends layout
 
 block content
     h1 Home
-    span
+    div(class='chartBody')
         div(class='col-4')
-            canvas(id='chart0' width='500' height='300')
+            canvas(id='chart0' width='500' height='200')
             legend(for='chart0')
         div(class='col-4')
-            canvas(id='chart1' width='500' height='300')
+            canvas(id='chart1' width='500' height='200')
             legend(for='chart1')
         div(class='col-4')
-            canvas(id='chart2' width='500' height='300')
+            canvas(id='chart2' width='500' height='200')
             legend(for='chart2')
     script(type="text/javascript").
         var ListOfUsers = !{JSON.stringify(userList)};
